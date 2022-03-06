@@ -41,19 +41,20 @@ class UploadHandler {
     return handleData.bind(this)
   }
 
-  async #onFile(fieldName, file, filename) {
-    const fileName = filename.filename
-    const saveFileTo = join(__dirname, '..', 'downloads', fileName)
-    logger.info(`Received file ${fileName} to socketId: ${this.#socketId}`)
+  async #onFile(name, file, info) {
+    const { filename } = info
+    console.log(info)
+    const saveFileTo = join(__dirname, '..', 'downloads', filename)
+    logger.info(`Received file ${filename} to socketId: ${this.#socketId}`)
 
     await pipelineAsync(
       file,
-      this.#handleFileBytes.apply(this, [fileName]),
+      this.#handleFileBytes.apply(this, [filename]),
       createWriteStream(saveFileTo)
     )
 
     logger.info(
-      `File ${fileName} saved to ${join(
+      `File ${filename} saved to ${join(
         __dirname,
         '..',
         'downloads'
