@@ -43,7 +43,6 @@ class UploadHandler {
 
   async #onFile(name, file, info) {
     const { filename } = info
-    console.log(info)
     const saveFileTo = join(__dirname, '..', 'downloads', filename)
     logger.info(`Received file ${filename} to socketId: ${this.#socketId}`)
 
