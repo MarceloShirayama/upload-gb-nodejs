@@ -50,7 +50,7 @@ const updateMessage = (msg) => {
   msgElement.innerText = msg
   msgElement.classList.add('alert', 'alert-success')
   setTimeout(() => {
-    msgElement.classList.remove('alert', 'alert-success')
+    msgElement.hidden = true
   }, 3000)
 }
 
